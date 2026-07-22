@@ -9,7 +9,7 @@ ServiceNow PDI · Incidents · Service Catalog · Change Management · Reporting
 
 ServiceNow is an IT Service Management platform. It's the system most enterprise IT organizations use to track, route, prioritize, and resolve IT work.
 
-In this lab I set up a ServiceNow Personal Developer Instance and touched the three core ITIL record types. I created users, walked an incident through its lifecycle, built a service catalog item with mandatory intake fields, pushed a change request through approval into a scheduled maintenance window, and built a report on incident volume by priority.
+In this lab I set up a ServiceNow Personal Developer Instance and touched the three core ITIL record types. I created users, walked an incident through its lifecycle, built a service catalog item with mandatory intake fields, pushed a change request through approval into a scheduled maintenance window, and built reports.
 
 ## Focus Areas
 
