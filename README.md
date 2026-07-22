@@ -54,17 +54,121 @@ Work enters the system as one of three record types. The state model enforces th
 | Change | CHG0030001, monthly Windows patching, approved to Scheduled |
 | Report | Incident Volume by Priority, Last 30 Days |
 
-## What I Built
-
-**Users first.** Tickets need callers. You can't log an incident against nobody, so I created three users with titles so every record traces to a person.
-
-**An incident.** A user couldn't connect to Outlook. I created the ticket and set priority off impact: one user down, webmail as a workaround, so a P3. Moved it to In Progress, assigned it to myself, and logged work notes as I went. Rebuilt the profile, wrote the resolution note, closed it. One thing I kept deliberate: the caller's description stays in the caller's plain words. The technical detail goes in the work notes. Tickets come in vague, the analyst makes them precise.
-
-**A service catalog item.** Different thing from an incident. Incident means broken, request means someone wants something. I built a laptop request form with four fields: requester, business justification, date needed, model preference. Three are mandatory, so no request arrives half-empty. Data quality gets enforced at intake instead of chased after.
-
-**A change request.** Monthly security patching for Windows servers. That's planned work on production, so it goes through change management. I documented risk, impact, a test plan, and a backout plan, then scheduled it into a Saturday 2-6 AM maintenance window. Approval ran in two rounds: a change manager signed off on the assessment, then a CAB (Change Advisory Board) authorized it. The change now sits in Scheduled until the window opens.
-
-**A report.** Incident volume by priority over the last 30 days. Reports are how IT ops sees where the volume is, what's aging, and who's overloaded.
+## Step-by-Step
+ 
+### Incident
+ 
+An incident is an unplanned interruption to a service. This part of the lab walks a single ticket through its full lifecycle, from creation to close, using a common scenario: a user who can't connect to Outlook.
+ 
+**1.** Went to Service Desk → Incidents → New. This opens a blank incident form.
+ 
+**2.** Filled in Caller, Category, Subcategory, Short description, and Description. The caller is who reported the problem. The short description is a one-line summary. The description holds the full detail, written in the user's own words.
+ 
+**3.** Set Priority to 3, Moderate. Priority is a judgment call based on impact, not a default value. One user was affected and a workaround existed, webmail, so this didn't rise to a higher priority.
+ 
+**4.** Set Assignment group to Service Desk. This routes the ticket into the right team's queue.
+ 
+**5.** Submitted the form. ServiceNow generated the ticket number, INC0010001.
+ 
+**6.** Opened the ticket, set State to In Progress, and assigned it to myself. This marks the ticket as actively being worked instead of sitting untouched in the queue.
+ 
+**7.** Added a work note. Work notes are internal, visible to IT staff only. Logged the diagnosis: confirmed the error with the user, found the Outlook profile was corrupted, started a repair, and told the user to use webmail in the meantime.
+ 
+**8.** Added a resolution note. This is a separate field from the work note, and it documents what actually fixed the problem, not the steps taken to get there. Rebuilt the profile, root cause was a corrupted OST file, user confirmed Outlook was working again.
+ 
+**9.** Set State to Resolved, then Closed. Closing only happens after the user confirms the fix worked.
+ 
+### Service Catalog Item
+ 
+A service catalog item is different from an incident. An incident is an unplanned interruption to a service. A catalog item is a request for something new, in this case a laptop. Catalog items let users self-serve routine requests without calling the help desk for every one.
+ 
+**1.** Went to Service Catalog → Catalog Definitions → Maintain Items → New.
+ 
+**2.** Set Name to New Laptop Request and Category to Hardware.
+ 
+**3.** Opened the Variables tab and added four fields: Requester Name, Business Justification, Required By Date, Laptop Model Preference. Variables are the form fields a requester fills out when submitting the request.
+ 
+**4.** Set Type first on each variable, before touching anything else. The form redraws itself based on Type, so setting it first avoids losing other settings on the field.
+ 
+**5.** Made three of the four variables mandatory: Requester Name, Business Justification, Required By Date. Mandatory fields block submission until they're filled in, which keeps incomplete requests from ever reaching the fulfillment team.
+ 
+**6.** Set Order numbers on each variable: 100, 200, 300, 400. Order controls the sequence fields appear in on the form. Without explicit numbers, fields can render out of sequence.
+ 
+**7.** On the Select Box variable, set both a Text value and a Value for each choice: Standard, Developer, Executive. Text is what the requester sees in the dropdown. Value is what actually gets stored in the database. Leaving Value blank is a common reason a choice won't save correctly.
+ 
+**8.** Saved the item and used Try It to preview the form exactly as a requester would see it in the portal.
+ 
+### Change Request
+ 
+A change request is planned work on production infrastructure, in this case monthly security patching. Because it touches production, it requires approval before anything happens.
+ 
+**1.** Navigated directly to the change request list by URL, since the module wasn't easy to find through this release's navigation menu.
+ 
+**2.** Started a new change and set Model to Normal. Normal changes run a full approval flow. Standard changes are pre-approved by definition and would have skipped that flow entirely, so Normal was the right choice here.
+ 
+**3.** Filled in Category, Risk (Low), Impact (2, Medium), Short description, and Description.
+ 
+**4.** Under the Planning tab, wrote a test plan and a backout plan. The test plan says how success gets verified after the patch goes out. The backout plan says what happens if the change needs to be undone.
+ 
+**5.** Under the Schedule tab, set the maintenance window: Saturday, 2 AM to 6 AM. This is the block of time the change is actually allowed to happen in.
+ 
+**6.** Requested approval. This generated two approval records for the Change Management group. Only one approval was needed to move forward.
+ 
+**7.** Approved one of those records as the admin. The second automatically flipped to No Longer Required, and the change moved to the Authorize stage.
+ 
+**8.** Reaching Authorize triggered six more approval records, this time for the CAB, the Change Advisory Board.
+ 
+**9.** Approved one CAB record. The remaining five flipped to No Longer Required, and the change moved to Scheduled.
+ 
+**10.** Left the change sitting in Scheduled. That's where a real change sits until its maintenance window actually opens. I did not click Implement, since the window hadn't arrived yet.
+ 
+### Reporting
+ 
+Reports convert raw ticket data into a form managers can read: volume, workload, and resolution time. All three reports below use Source type Table, not Data source, pointed at the Incident [incident] table.
+ 
+**Report 1: Incident Volume by Priority**
+ 
+This report answers a basic question: how many tickets came in, broken down by priority.
+ 
+**1.** Went to Reports → Create New and named it Incident Volume by Priority, Last 30 Days.
+ 
+**2.** Set Type to Bar.
+ 
+**3.** Set Group by to Priority.
+ 
+**4.** Added a condition: Created, on, Last 30 days. This limits the report to recent activity instead of every incident ever logged in the instance.
+ 
+**5.** Saved and ran the report.
+ 
+**Report 2: Open Incidents by Assigned Agent**
+ 
+This report shows workload: how many open tickets each agent is currently carrying.
+ 
+**1.** Went to Reports → Create New and named it Open Incidents by Assigned Agent.
+ 
+**2.** Set Type to Bar.
+ 
+**3.** Set Group by to Assigned to.
+ 
+**4.** Added a condition: Active, is, true. This filters the report down to tickets that are still open, excluding anything already resolved or closed.
+ 
+**5.** Saved and ran the report.
+ 
+**Report 3: MTTR by Assignment Group**
+ 
+MTTR stands for Mean Time to Resolution. Unlike the first two reports, which count tickets, this one measures how long tickets take to close, grouped by team.
+ 
+**1.** Went to Reports → Create New and named it Mean Time to Resolution by Assignment Group.
+ 
+**2.** Set Type to Bar.
+ 
+**3.** Set Group by to Assignment group.
+ 
+**4.** Changed the Aggregation setting from Count to Average, and selected the Resolve time field. This is the setting that turns the report from answering "how many" into answering "how long."
+ 
+**5.** Added a condition: State, is, Closed. Only closed tickets have a resolve time, since resolution isn't calculated until a ticket is actually done.
+ 
+**6.** Saved and ran the report.
 
 ## Verification
 
