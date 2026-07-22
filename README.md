@@ -139,6 +139,10 @@ This report answers a basic question: how many tickets came in, broken down by p
 **4.** Added a condition: Created, on, Last 30 days. This limits the report to recent activity instead of every incident ever logged in the instance.
  
 **5.** Saved and ran the report.
+
+<img width="1568" height="747" alt="report1" src="https://github.com/user-attachments/assets/7d977d92-f73c-44ce-9f8a-3ad4721ce844" />
+
+
  
 **Report 2: Open Incidents by Assigned Agent**
  
