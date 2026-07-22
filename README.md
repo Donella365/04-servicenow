@@ -142,7 +142,7 @@ This report answers a basic question: how many tickets came in, broken down by p
 
 <img width="1568" height="747" alt="report1" src="https://github.com/user-attachments/assets/7d977d92-f73c-44ce-9f8a-3ad4721ce844" />
 
-
+<br><br>
  
 **Report 2: Open Incidents by Assigned Agent**
  
@@ -157,6 +157,10 @@ This report shows workload: how many open tickets each agent is currently carryi
 **4.** Added a condition: Active, is, true. This filters the report down to tickets that are still open, excluding anything already resolved or closed.
  
 **5.** Saved and ran the report.
+
+<img width="1568" height="745" alt="report2" src="https://github.com/user-attachments/assets/2495d565-8308-4868-a357-46dd9bc62ff4" />
+
+<br><br>
  
 **Report 3: MTTR by Assignment Group**
  
@@ -173,6 +177,10 @@ MTTR stands for Mean Time to Resolution. Unlike the first two reports, which cou
 **5.** Added a condition: State, is, Closed. Only closed tickets have a resolve time, since resolution isn't calculated until a ticket is actually done.
  
 **6.** Saved and ran the report.
+
+<img width="1568" height="749" alt="report3" src="https://github.com/user-attachments/assets/514b09b7-4936-44ad-8bd5-62664f190f37" />
+
+<br><br>
 
 ## Verification
 
