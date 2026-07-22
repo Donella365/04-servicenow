@@ -77,6 +77,10 @@ An incident is an unplanned interruption to a service. This part of the lab walk
 **8.** Added a resolution note. This is a separate field from the work note, and it documents what actually fixed the problem, not the steps taken to get there. Rebuilt the profile, root cause was a corrupted OST file, user confirmed Outlook was working again.
  
 **9.** Set State to Resolved, then Closed. Closing only happens after the user confirms the fix worked.
+
+<img width="1526" height="732" alt="incientresolved" src="https://github.com/user-attachments/assets/dadcda53-93b3-4327-878f-b2aad53cd806" />
+
+---
  
 ### Service Catalog Item
  
@@ -97,7 +101,10 @@ A service catalog item is different from an incident. An incident is an unplanne
 **7.** On the Select Box variable, set both a Text value and a Value for each choice: Standard, Developer, Executive. Text is what the requester sees in the dropdown. Value is what actually gets stored in the database. Leaving Value blank is a common reason a choice won't save correctly.
  
 **8.** Saved the item and used Try It to preview the form exactly as a requester would see it in the portal.
- 
+
+<img width="1915" height="848" alt="laptoprequest" src="https://github.com/user-attachments/assets/02df7007-2b37-4688-9116-b614b17ba8a3" />
+
+---
 ### Change Request
  
 A change request is planned work on production infrastructure, in this case monthly security patching. Because it touches production, it requires approval before anything happens.
@@ -121,7 +128,11 @@ A change request is planned work on production infrastructure, in this case mont
 **9.** Approved one CAB record. The remaining five flipped to No Longer Required, and the change moved to Scheduled.
  
 **10.** Left the change sitting in Scheduled. That's where a real change sits until its maintenance window actually opens. I did not click Implement, since the window hadn't arrived yet.
- 
+
+<img width="1528" height="696" alt="changerequest" src="https://github.com/user-attachments/assets/713a67b5-d69e-4482-aaf4-57b856a8357a" />
+
+---
+
 ### Reporting
  
 Reports convert raw ticket data into a form managers can read: volume, workload, and resolution time. All three reports below use Source type Table, not Data source, pointed at the Incident [incident] table.
