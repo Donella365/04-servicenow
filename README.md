@@ -3,7 +3,7 @@ ServiceNow PDI · Incidents · Service Catalog · Change Management · Reporting
 
 ---
 
-## [▶️ Lab Walkthrough Video] https://www.loom.com/share/29dab3fa6a624e9cae4dc0e6da4dc945
+## [▶️ Lab Walkthrough Video] (https://www.loom.com/share/29dab3fa6a624e9cae4dc0e6da4dc945)
 
 ## What This Lab Covers
 
