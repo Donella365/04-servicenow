@@ -22,8 +22,6 @@ In this lab I set up a ServiceNow Personal Developer Instance and touched the th
 
 ## The Operational Model
 
-Work enters the system as one of three record types. The state model enforces the process: a change can't reach Implement without passing Authorize.
-
 <img width="1536" height="1024" alt="lab4diagram" src="https://github.com/user-attachments/assets/3efdb280-65c7-486e-8981-fcd78f0db011" />
 
 
