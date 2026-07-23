@@ -24,24 +24,8 @@ In this lab I set up a ServiceNow Personal Developer Instance and touched the th
 
 Work enters the system as one of three record types. The state model enforces the process: a change can't reach Implement without passing Authorize.
 
-```
-            ┌──────────────────────────────────────────────┐
-            │            ServiceNow ITSM                    │
-            │                                              │
-  broken? ──►  INCIDENT                                     │
-            │  New → In Progress → Resolved → Closed        │
-            │  (work notes + resolution notes)              │
-            │                                              │
-  want    ──►  SERVICE REQUEST                              │
-  something?│  Catalog form → mandatory fields →            │
-            │  fulfillment                                  │
-            │                                              │
-  planned ──►  CHANGE                                       │
-  work?     │  New → Assess → Authorize → Scheduled →       │
-            │  Implement → Review → Closed                  │
-            │  (approval gates: Change Mgmt → CAB)          │
-            └──────────────────────────────────────────────┘
-```
+<img width="1536" height="1024" alt="lab4diagram" src="https://github.com/user-attachments/assets/3efdb280-65c7-486e-8981-fcd78f0db011" />
+
 
 ## Lab Details
 
